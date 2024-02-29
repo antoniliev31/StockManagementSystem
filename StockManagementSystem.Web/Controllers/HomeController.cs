@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using StockManagementSystem.Web.Models;
-using System.Diagnostics;
-
-namespace StockManagementSystem.Web.Controllers
+﻿namespace StockManagementSystem.Web.Controllers
 {
-    public class HomeController : Controller
+    using Microsoft.AspNetCore.Mvc;
+    using StockManagementSystem.Web.Models;
+    using System.Diagnostics;
+
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
