@@ -9,6 +9,10 @@
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
+        [MaxLength(ArticleNumberMaxLength)]
+        public string ArticleNumber { get; set; } = null!;
+
 
         [Required]
         [MaxLength(TitleMaxLength)]

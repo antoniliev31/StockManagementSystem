@@ -6,7 +6,10 @@
         {
             public const int TitleMinLength = 2;
             public const int TitleMaxLength = 20;
-            
+
+            public const int ArticleNumberMinLength = 8;
+            public const int ArticleNumberMaxLength = 8;
+
             public const int DescriptionMaxLength = 150;
 
             public const int PriceMinValue = 0;

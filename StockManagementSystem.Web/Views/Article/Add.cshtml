@@ -10,9 +10,14 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form asp-action="Add" method="post">
             <div class="mb-3">
-                <label asp-for="@Model.Title" class="form-label-add-edit">Title</label>
+                <label asp-for="@Model.Title" class="form-label-add-edit">Article Name</label>
                 <input asp-for="@Model.Title" class="form-control" aria-required="true" />
                 <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.ArticleNumber" class="form-label-add-edit">Article Number</label>
+                <input asp-for="@Model.ArticleNumber" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.ArticleNumber" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.CategoryId" class="form-label-add-edit">Type of article</label>
@@ -26,22 +31,27 @@
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
-                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="3"></textarea>
+                <textarea asp-for="@Model.Description" class="form-control" rows="3"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Price" class="form-label-add-edit">Price</label>
-                <input asp-for="@Model.Price" class="form-control" aria-required="true" value="0.00" />
+                <input asp-for="@Model.Price" class="form-control" aria-required="true" />
                 <span asp-validation-for="@Model.Price" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="@Model.Supplier" class="form-label-add-edit">Supplier</label>
-                <input asp-for="@Model.Supplier" class="form-control" aria-required="true" />
-                <span asp-validation-for="@Model.Supplier" class="text-danger"></span>
+                <label asp-for="@Model.SupplierId" class="form-label-add-edit">Suppliers</label>
+                <select asp-for="@Model.SupplierId" class="form-control" aria-required="true">
+                    @foreach (var type in Model.Suppliers)
+                    {
+                        <option value="@type.Id">@type.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Qantity" class="form-label-add-edit">Qantity</label>
-                <input asp-for="@Model.Qantity" class="form-control" value="0" />
+                <input asp-for="@Model.Qantity" class="form-control" />
                 <span asp-validation-for="@Model.Qantity" class="text-danger"></span>
             </div>                        
             <div class="mb-3">

@@ -1,4 +1,4 @@
-﻿namespace Web.ViewModels.Category
+﻿namespace StockManagementSystem.Web.ViewModels.Article
 {
     public class ArticleSelectCategoryFormModel
     {

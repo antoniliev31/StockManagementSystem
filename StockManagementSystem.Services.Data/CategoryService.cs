@@ -1,9 +1,9 @@
 ﻿namespace StockManagementSystem.Services.Data
 {
-    using global::Web.ViewModels.Category;
     using Microsoft.EntityFrameworkCore;
     using StockManagementSystem.Services.Data.Models.Interfaces;
-    using StockManagementSystem.Web.Data;    
+    using StockManagementSystem.Web.Data;
+    using StockManagementSystem.Web.ViewModels.Article;
 
     public class CategoryService : ICategoryService
     {
@@ -14,7 +14,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<ArticleSelectCategoryFormModel>> AllCategoryesAsync()
+        public async Task<IEnumerable<ArticleSelectCategoryFormModel>> GetAllCategoryesAsync()
         {
             IEnumerable<ArticleSelectCategoryFormModel> allCategories = await this.dbContext
                 .Categories
@@ -34,6 +34,15 @@
             bool result = await this.dbContext
                 .Categories
                 .AnyAsync(c => c.Name == name);
+
+            return result;
+        }
+
+        public async Task<bool> ExistsByIdAsync(int id)
+        {
+            bool result = await this.dbContext
+                .Categories
+                .AnyAsync(c => c.Id == id);
 
             return result;
         }
