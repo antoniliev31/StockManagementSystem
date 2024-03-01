@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StockManagementSystem.Common\StockManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\StockManagementSystem.Data.Models\StockManagementSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\StockManagementSystem.Data\StockManagementSystem.Data.csproj" />
     <ProjectReference Include="..\StockManagementSystem.Services.Data.Models\StockManagementSystem.Services.Data.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\StockManagementSystem.Web.ViewModels\StockManagementSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StockManagementSystem.Common\StockManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\StockManagementSystem.Data.Models\StockManagementSystem.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

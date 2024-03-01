@@ -1,27 +1,26 @@
 ﻿namespace StockManagementSystem.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using StockManagementSystem.Web.Models;
     using System.Diagnostics;
 
-    public class HomeController : BaseController
+    [Authorize]
+    public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        
+        public HomeController()
         {
-            _logger = logger;
+            
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

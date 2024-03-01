@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StockManagementSystem.Common\StockManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\StockManagementSystem.Web.ViewModels\StockManagementSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
