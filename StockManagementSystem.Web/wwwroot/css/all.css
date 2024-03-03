@@ -1,0 +1,39 @@
+﻿.left-panel, .right-panel {
+    width: 20%;
+}
+
+.main-panel {
+    width: 60%;
+}
+
+#form-find {
+    margin-right: 0em;
+    padding-right: 2em;
+}
+
+#form-container {
+    text-align: center;
+    color: white;    
+    
+}
+
+#nav-button {
+    background-color: #FFC107;
+    color: black;
+}
+
+#form-element {
+    padding-bottom: 0.8em;
+}
+
+#btn-form-submit {
+    padding-bottom: 1em;
+}
+
+#buton-details {
+    max-width: 9em;    
+}
+
+#partial-container {
+    padding-bottom: 0.5em;
+}

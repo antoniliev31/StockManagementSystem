@@ -1,0 +1,17 @@
+﻿#card-container {
+    padding: 0.5em 0.1em;
+}
+
+#card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#card-element {    
+    flex-shrink: 0;
+}
+
+table {
+    
+}

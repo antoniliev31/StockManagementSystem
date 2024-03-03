@@ -38,6 +38,14 @@
             return allSupliers;
         }
 
+        public async Task<IEnumerable<string>> GetAllSupplierNamesAsync()
+        {
+            IEnumerable<string> allNames = await this.dbContext
+                .Suppliers
+                .Select(c => c.Name)
+                .ToArrayAsync();
 
+            return allNames;
+        }
     }
 }

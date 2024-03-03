@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using StockManagementSystem.Services.Data.Interfaces;
+    using StockManagementSystem.Services.Data.Models.Article;
     using StockManagementSystem.Services.Data.Models.Interfaces;
     using StockManagementSystem.Web.ViewModels.Article;
 
@@ -20,6 +21,19 @@
             this.categoryService = categoryService;
             this.supplierService = supplierService;
             this.articleService = articleService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery] AllArticleQueryModel queryModel)
+        {
+            AllArticlesFilteredAndPagesServiceModel serviceModel = await this.articleService.AllArticleAsync(queryModel);
+
+            queryModel.Articles = serviceModel.Articles;
+            queryModel.TotalArticles = serviceModel.TotalArticlesCount;
+            queryModel.Categories = await this.categoryService.AllCategoryNamesAsync();
+            queryModel.Suppliers = await this.supplierService.GetAllSupplierNamesAsync();
+
+            return this.View(queryModel);
         }
 
         [HttpGet]

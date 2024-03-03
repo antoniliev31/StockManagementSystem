@@ -9,9 +9,13 @@
         [Key]
         public Guid Id { get; set; }
 
+
         [Required]
         [MaxLength(ArticleNumberMaxLength)]
         public string ArticleNumber { get; set; } = null!;
+
+
+        public DateTime CreatedOn { get; set; }
 
 
         [Required]
@@ -39,8 +43,6 @@
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;
-
-
 
     }
 }

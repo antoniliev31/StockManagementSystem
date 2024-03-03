@@ -32,6 +32,10 @@
                 .HasForeignKey(a => a.SupplierId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Article>()
+                .Property(a => a.CreatedOn)
+                .HasDefaultValueSql("GETDATE()");
+
             base.OnModelCreating(builder);
         }
     }
