@@ -12,7 +12,8 @@
 
             public const int DescriptionMaxLength = 150;
 
-            public const int PriceMinValue = 0;
+            public const string PriceMinValue = "0";
+            public const string PriceMaxValue = "2000";
 
             public const int QantityMinValue = 0;
         }

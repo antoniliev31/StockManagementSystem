@@ -26,6 +26,7 @@
         public string? Description { get; set; }
 
         [Required]
+        [Range(typeof(decimal), PriceMinValue, PriceMaxValue)]
         public decimal Price { get; set; }
 
         [Required]

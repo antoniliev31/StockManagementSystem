@@ -1,11 +1,4 @@
-﻿@model ArticleFormModel
-@{
-    ViewBag.Title = "Create a new Article";
-}
-
-<h2 class="text-center">@ViewBag.Title</h2>
-
-<hr />
+﻿@model StockManagementSystem.Web.ViewModels.Article.ArticleFormModel
 
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
@@ -61,21 +54,6 @@
         </form>
     </div>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-
-    <script>
-        function roundToTwoDecimalPlaces(input) {            
-            var value = parseFloat(input.value.replace(/\s+/g, '').replace(",", "."));
-            if (!isNaN(value)) {
-                input.value = value.toFixed(2);
-            }
-        }
-    </script>
-}
-
-
 
 
 
