@@ -8,6 +8,7 @@
     using StockManagementSystem.Web.ViewModels.Article;
     using StockManagementSystem.Web.ViewModels.Article.Enums;
     using System;
+    using System.Linq;
 
     public class ArticleService : IArticleService
     {
@@ -35,12 +36,12 @@
 
             return result;
         }
-        
+
         public async Task<AllArticlesFilteredAndPagesServiceModel> AllArticleAsync(AllArticleQueryModel queryModel)
         {
             IQueryable<Article> articlesQuery = dbContext
-                .Articles
-                .Where(a => a.Quantity > 0)
+                .Articles 
+                .Where(a => a.Price >=0)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.Category))
@@ -49,13 +50,18 @@
                     .Where(a => a.Category.Name == queryModel.Category);
             }
 
+            if (!string.IsNullOrWhiteSpace(queryModel.Supplier))
+            {
+                articlesQuery = articlesQuery
+                    .Where(a => a.Supplier.Name == queryModel.Supplier);
+            }
+
             if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
             {
                 string wildCard = $"%{queryModel.SearchString.ToLower()}%";
 
                 articlesQuery = articlesQuery
-                    .Where(a => EF.Functions.Like(a.Title, wildCard) ||
-                                EF.Functions.Like(a.Supplier.Name, wildCard) ||
+                    .Where(a => EF.Functions.Like(a.Title, wildCard) ||                                
                                 EF.Functions.Like(a.ArticleNumber, wildCard));                              
             }
 
