@@ -79,9 +79,11 @@
                 .OrderBy(a => a.Price)
             };
 
-            IEnumerable<ArticleAllViewModel> allArticles = await articlesQuery
+            articlesQuery = articlesQuery
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ArticlesPerPage)
-                .Take(queryModel.ArticlesPerPage)
+                .Take(queryModel.ArticlesPerPage);
+
+            IEnumerable<ArticleAllViewModel> allArticles = await articlesQuery
                 .Select(a => new ArticleAllViewModel
                 {
                     Id = a.Id,
@@ -92,12 +94,14 @@
                 })
                 .ToArrayAsync();
 
-            int totalArticle = articlesQuery.Count();
+            int totalArticle = dbContext.Articles.Count();
 
             return new AllArticlesFilteredAndPagesServiceModel
             {
                 TotalArticlesCount = totalArticle,
-                Articles = allArticles
+                Articles = allArticles,
+                CurrentPage = queryModel.CurrentPage,
+                ArticlesPerPage = queryModel.ArticlesPerPage
             };
         }
 

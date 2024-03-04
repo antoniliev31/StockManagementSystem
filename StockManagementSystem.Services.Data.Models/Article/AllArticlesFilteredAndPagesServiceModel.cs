@@ -12,5 +12,9 @@
         public int TotalArticlesCount { get; set; }
 
         public IEnumerable<ArticleAllViewModel> Articles { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int ArticlesPerPage { get; set; }
     }
 }

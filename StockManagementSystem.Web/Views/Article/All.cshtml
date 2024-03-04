@@ -32,7 +32,7 @@
                         <option value="">All</option>
                         @foreach (var supplier in Model.Suppliers)
                         {
-                            <option value="@supplier">@supplier</option>
+                            <option value="@supplier">@supplier</option>                            
                         }
                     </select>
                 </div>
@@ -73,7 +73,7 @@
                     <a id="nav-button" class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
                        asp-controller="Article" asp-action="All"
                        asp-route-category="@Model.Category"
-                       asp-route-supplier="@Model.Suppliers"
+                       asp-route-supplier="@Model.Supplier"
                        asp-route-searchTerm="@Model.SearchString"
                        asp-route-currentPage="@(Model.CurrentPage - 1)"
                        asp-route-articlesPerPage ="@Model.ArticlesPerPage"

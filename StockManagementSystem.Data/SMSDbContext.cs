@@ -15,7 +15,7 @@
 
         public DbSet<Supplier> Suppliers { get; set; } = null!;
 
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<Article> Articles { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder builder)
