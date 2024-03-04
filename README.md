@@ -15,8 +15,8 @@ The Stock Management System is a web application designed to help businesses man
 
 ## Screens from Application
 
-### Login screen
-![Login screen](/docs/images/login-screen.png)
+### Home page screen
+![Home-page screen](/docs/images/home-page.png)
 
 ### Search page
 ![Search page](/docs/images/search-page.png)
