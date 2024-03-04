@@ -49,3 +49,7 @@ View Article Details: Access detailed information about each article, including 
 ![Article edit](/docs/images/article-edit.png)
 
 Edit Article: Modify existing article details such as name, price, quantity, supplier, and category.
+
+
+### Article delete
+![Article delete](/docs/images/article-delete.png)
