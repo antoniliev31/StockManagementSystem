@@ -56,7 +56,7 @@
             if (!categoryExist)
             {
                 this.ModelState.AddModelError(nameof(articleFormModel.CategoryId), "Category does not exist!");
-            }            
+            }
 
             bool supplierExist = await this.supplierService.ExistSupplierByNameAsync(articleFormModel.SupplierId);
 
@@ -65,9 +65,9 @@
                 this.ModelState.AddModelError(nameof(articleFormModel.SupplierId.ToString), "Supplier does not exist!");
             }
 
-            bool articleNumberExist = await this.articleService.ExistArticleByArticleNumer(articleFormModel.ArticleNumber);
+            bool articleNumberExist = await this.articleService.ArticleExistByArticleNumer(articleFormModel.ArticleNumber);
 
-            if (articleNumberExist) 
+            if (articleNumberExist)
             {
                 articleFormModel.Categories = await this.categoryService.GetAllCategoryesAsync();
                 articleFormModel.Suppliers = await this.supplierService.GetAllSupplierAsync();
@@ -99,6 +99,143 @@
                 articleFormModel.Suppliers = await this.supplierService.GetAllSupplierAsync();
 
                 return this.View(articleFormModel);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            bool articleExist = await this.articleService.ArticleExistByIdAsync(id);
+
+            if (!articleExist)
+            {
+                this.TempData[ErrorMessage] = "Item with this id does not exist!";
+                return this.RedirectToAction("All", "Article");
+            }
+
+            try
+            {
+                ArticleDetailsViewModel? viewModel = await this.articleService.GetArticleDetailsByAdAsync(id);
+
+                return this.View(viewModel);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occurred! Please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            bool articleExist = await this.articleService.ArticleExistByIdAsync(id);
+
+            if (!articleExist)
+            {
+                this.TempData[ErrorMessage] = "Item with this id does not exist!";
+                return this.RedirectToAction("All", "Article");
+            }
+
+            try
+            {
+                ArticleFormModel formModel = await this.articleService.GetArticleForEditByIdAsync(id);
+
+                formModel.Categories = await this.categoryService.GetAllCategoryesAsync();
+                formModel.Suppliers = await this.supplierService.GetAllSupplierAsync();
+
+                return this.View(formModel);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occurred! Please try again later!";
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Guid id, ArticleFormModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                model.Categories = await this.categoryService.GetAllCategoryesAsync();
+                model.Suppliers = await this.supplierService.GetAllSupplierAsync();
+                return this.View(model);
+            }
+
+            bool articleExist = await this.articleService.ArticleExistByIdAsync(id);
+
+            if (!articleExist)
+            {
+                this.TempData[ErrorMessage] = "Item with this id does not exist!";
+                return this.RedirectToAction("All", "Article");
+            }           
+
+
+            try
+            {
+                await this.articleService.EditArticleByIdAndFormModelAsync(id, model);
+                model.Categories = await this.categoryService.GetAllCategoryesAsync();
+                model.Suppliers = await this.supplierService.GetAllSupplierAsync();
+                this.TempData[SuccessMessage] = "You have successfully changed the details!";
+                return this.RedirectToAction("Details", "Article", new { id = id });
+            }
+            catch (Exception)
+            {
+                this.ModelState.AddModelError(string.Empty, "Unexpected error! Please try again later.");
+            }
+
+            return this.RedirectToAction("Details", "Article", new { id = id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete (Guid id)
+        {
+            bool articleExist = await this.articleService.ArticleExistByIdAsync(id);
+
+            if (!articleExist)
+            {
+                this.TempData[ErrorMessage] = "Item with this id does not exist!";
+                return this.RedirectToAction("All", "Article");
+            }
+
+            try
+            {
+                ArticleForDeleteViewModel viewModel = await this.articleService.GetArticleForDeleteByIdAsync(id);
+
+                return this.View(viewModel);
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occurred! Please try again later!";
+                return this.RedirectToAction("Details", "Article", new { id = id });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id, ArticleForDeleteViewModel model)
+        {
+            bool articleExist = await this.articleService.ArticleExistByIdAsync(id);
+
+            if (!articleExist)
+            {
+                this.TempData[ErrorMessage] = "Item with this id does not exist!";
+                return this.RedirectToAction("All", "Article");
+            }
+
+            try
+            {
+                await this.articleService.DeleteArticleByIdAsync(id);
+
+                this.TempData[SuccessMessage] = "Successfully deleted item!";
+                return this.RedirectToAction("All", "Article");
+            }
+            catch (Exception)
+            {
+                this.TempData[ErrorMessage] = "Unexpected error occurred! Please try again later!";
+                return this.RedirectToAction("Delete", "Artticle", new { id = id });
             }
         }
     }

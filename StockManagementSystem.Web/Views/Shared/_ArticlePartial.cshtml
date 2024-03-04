@@ -2,23 +2,12 @@
 
 <div id="card-container" class="card col-8" style="width: 50rem;">
     <table style="width: 100%; table-layout: fixed;" class="card-body">
-        <tr>
-            <td style="width: 60%;"><h5 id="card-element" class="card-title mt-1">@Model.Title</h5></td>
-            @* <td style="width: 35%;"><p id="card-element" class="mb-0"><span class="fw-bold">Category: </span>@Model.Category</p></td> *@
+        <tr class="m">
+            <td style="width: 25%;"><h5 id="card-element" class="card-title mt-1">@Model.Title</h5></td>
+            <td style="width: 25%;"><p id="card-element" class="mb-0"><span class="fw-bold"></span>@Model.Category</p></td>
             <td style="width: 15%;"><p id="card-element" class="mb-0"><span class="fw-bold">Q: </span>@Model.Quantity</p></td>
-            <td style="width: 15%;"><p id="card-element" class="mb-0"><span class="fw-bold">Price: </span>@Model.Price</p></td>
+            <td style="width: 25%;"><p id="card-element" class="mb-0"><span class="fw-bold">Price: </span>@Model.Price</p></td>
             <td style="width: 10%;"><a asp-controller="Article" asp-action="Details" asp-route-id="@Model.Id" id="button-details" class="btn btn-warning mb-1 w-80 p-1 fw-bold">Details</a></td>
         </tr>        
-    </table>
-    @* <div id="card-container"class="card-body" style="display: flex; justify-content: space-between;">
-        <div id="card-body">
-            <h5 id="card-element" class="card-title mt-1">@Model.Title</h5>
-            <p id="card-element" class="mb-0"><span class="fw-bold">Category: </span>@Model.Category</p>
-            <p id="card-element" class="mb-0"><span class="fw-bold">Quantity: </span>@Model.Quantity</p>
-            <p id="card-element" class="mb-0"><span class="fw-bold">Price: </span>@Model.Price</p>
-        </div>
-        <div>
-            <a asp-controller="Article" asp-action="Details" asp-route-id="@Model.Id" id="button-details" class="btn btn-warning mb-1 w-80 p-1 fw-bold">View Details</a>
-        </div>
-    </div> *@
+    </table>    
 </div>

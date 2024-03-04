@@ -1,0 +1,42 @@
+﻿@model ArticleDetailsViewModel
+@{
+    ViewBag.Title = "Article Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="col d-flex justify-content-center">
+    <div class="card w-50 mx-auto">
+        <div class="card-body">
+            <div class="row">
+                <div class="d-flex justify-content-between pb-3">
+                    <h3 class="card-title">@Model.Title</h3>
+                    <a asp-controller="Article" asp-action="All" class="btn btn-warning mb-2 p-2 fw-bold">Back to All</a>
+                </div>                
+            </div>
+            <div class="row pb-3">
+                <p class="mb-0"><span class="fw-bold">ArticleNumber: </span>@Model.ArticleNumber</p>
+                <p class="mb-0"><span class="fw-bold">Category: </span>@Model.Category</p>
+                <p class="mb-0"><span class="fw-bold">Description: </span>@Model.Description</p>
+                <p class="mb-0"><span class="fw-bold">Supplier: </span>@Model.Supplier</p>
+                <p class="mb-0"><span class="fw-bold">Price: </span>@Model.Price</p>
+                <p class="mb-0"><span class="fw-bold">Quantity: </span>@Model.Quantity</p>
+                <p class="mb-0"><span class="fw-bold">CreatedOn: </span>@Model.CreatedOn</p>
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-between">
+                    <a asp-controller="Article" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mb-2 p-2 fw-bold">Edit</a>
+                    <a asp-controller="Article" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mb-2 p-2 fw-bold">Delete</a>                    
+                </div>
+            </div>            
+        </div>        
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -32,7 +32,7 @@
 
 
         [Required]
-        public int Qantity { get; set; }
+        public int Quantity { get; set; }
 
 
         [ForeignKey(nameof(Supplier))]

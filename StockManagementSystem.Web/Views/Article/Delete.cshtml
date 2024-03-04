@@ -1,0 +1,40 @@
+﻿@model ArticleForDeleteViewModel
+@{
+    ViewBag.Title = "Confirm Delete";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="post" asp-action="Delete">
+    <div class="col d-flex justify-content-center">
+        <div class="card w-50 mx-auto">
+            <div class="card-body">
+                <div class="row">
+                    <div class="d-flex justify-content-between pb-3">
+                        <h3 class="card-title">@Model.Title</h3>
+                        <a asp-controller="Article" asp-action="All" class="btn btn-warning mb-2 p-2 fw-bold">Cancel</a>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <p class="mb-0"><span class="fw-bold">ArticleNumber: </span>@Model.ArticleNumber</p>
+                    <p class="mb-0"><span class="fw-bold">Category: </span>@Model.Category</p>
+                    <p class="mb-0"><span class="fw-bold">Supplier: </span>@Model.Supplier</p>
+                    <p class="mb-0"><span class="fw-bold">Quantity: </span>@Model.Quantity</p>
+                </div>
+                <div class="row">                    
+                    <div class="d-flex justify-content-between">
+                        <input type="submit" value="Delete" class="btn btn-danger mb-2 p-2 fw-bold" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
