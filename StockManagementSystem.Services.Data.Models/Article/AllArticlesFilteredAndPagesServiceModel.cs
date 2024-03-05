@@ -13,8 +13,6 @@
 
         public IEnumerable<ArticleAllViewModel> Articles { get; set; }
 
-        public int CurrentPage { get; set; }
-
-        public int ArticlesPerPage { get; set; }
+        
     }
 }

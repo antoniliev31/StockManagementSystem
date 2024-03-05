@@ -41,7 +41,7 @@
         {
             IQueryable<Article> articlesQuery = dbContext
                 .Articles 
-                .Where(a => a.Price >=0)
+                .Where(a => a.Price >0)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.Category))
@@ -61,8 +61,9 @@
                 string wildCard = $"%{queryModel.SearchString.ToLower()}%";
 
                 articlesQuery = articlesQuery
-                    .Where(a => EF.Functions.Like(a.Title, wildCard) ||                                
-                                EF.Functions.Like(a.ArticleNumber, wildCard));                              
+                    .Where(a => EF.Functions.Like(a.Title, wildCard) ||
+                                EF.Functions.Like(a.ArticleNumber, wildCard) ||
+                                EF.Functions.Like(a.Supplier.Name, wildCard));
             }
 
             articlesQuery = queryModel.ArticleSorting switch
@@ -74,16 +75,15 @@
                 ArticleSorting.CreatedOnAscending => articlesQuery
                   .OrderByDescending(a => a.CreatedOn),
                 ArticleSorting.CreatedOnDescending => articlesQuery
-                  .OrderBy (a => a.CreatedOn),
+                  .OrderBy(a => a.CreatedOn),
                 _ => articlesQuery
                 .OrderBy(a => a.Price)
             };
 
-            articlesQuery = articlesQuery
-                .Skip((queryModel.CurrentPage - 1) * queryModel.ArticlesPerPage)
-                .Take(queryModel.ArticlesPerPage);
-
             IEnumerable<ArticleAllViewModel> allArticles = await articlesQuery
+                .Where(a => a.Price > 0)
+                .Skip((queryModel.CurrentPage - 1) * queryModel.ArticlesPerPage)
+                .Take(queryModel.ArticlesPerPage)
                 .Select(a => new ArticleAllViewModel
                 {
                     Id = a.Id,
@@ -94,14 +94,13 @@
                 })
                 .ToArrayAsync();
 
-            int totalArticle = dbContext.Articles.Count();
+            int totalArticles = articlesQuery.Count();
+            
 
             return new AllArticlesFilteredAndPagesServiceModel
             {
-                TotalArticlesCount = totalArticle,
-                Articles = allArticles,
-                CurrentPage = queryModel.CurrentPage,
-                ArticlesPerPage = queryModel.ArticlesPerPage
+                TotalArticlesCount = totalArticles,
+                Articles = allArticles,                
             };
         }
 

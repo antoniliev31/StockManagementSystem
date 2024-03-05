@@ -27,7 +27,7 @@
         public string? Description { get; set; }
 
 
-        [Required]
+        [Required]        
         public decimal Price { get; set; }
 
 
