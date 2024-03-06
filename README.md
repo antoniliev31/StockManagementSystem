@@ -53,3 +53,7 @@ Edit Article: Modify existing article details such as name, price, quantity, sup
 
 ### Article delete
 ![Article delete](/docs/images/article-delete.png)
+
+### Balance
+![Balance](/docs/images/report)
+The Balance functionality in the Stock Management System provides users with an overview of the current inventory balance, including information such as article name, category, supplier, price, quantity, and total sum. This feature allows users to assess the overall state of their inventory and track the availability of various items.
