@@ -1,0 +1,52 @@
+﻿@model BalanceViewModel
+
+@{
+    ViewBag.Title = "Balance";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container-fluid">
+    <div class="d-xxl-flex justify-content-lg-center">
+        <div>
+            <div class="">
+                @if (!Model.ReportViewModels.Any())
+                {
+                    <div id="card-container" class="card col-8" style="width: 50rem;">
+                        <section style="width: 100%; table-layout: fixed;" class="card-body">
+                            <h5 id="filter-text" class="text-center text-black">Sorry, there are no matches for your selected criteria.</h5>
+                            <h5 id="filter-text" class="text-center text-black">Please try again with different options!</h5>
+                        </section>
+                    </div>
+                }
+                <table style="width: 100%; table-layout: fixed;" class="card-body">
+                    <tr class="m">
+                        
+                        <td style="width: 25%;"><h5 id="card-element" class="card-title mt-1 text-white">Title</h5></td>
+                        <td style="width: 25%;"><h5 id="card-element" class="card-title mt-1 text-white">Category</h5></td>
+                        <td style="width: 25%;"><h5 id="card-element" class="card-title mt-1 text-white">Supplier</h5></td>
+                        <td style="width: 25%;"><h5 id="card-element" class="card-title mt-1 text-white">Price</h5></td>
+                        <td style="width: 15%;"><h5 id="card-element" class="card-title mt-1 text-white">Quantity</h5></td>
+                        <td style="width: 15%;"><h5 id="card-element" class="card-title mt-1 text-white">Sum</h5></td>
+                    </tr>
+                </table>
+                
+                @foreach (var article in Model.ReportViewModels)
+                {
+                    <div id="partial-container">                        
+                        <partial name="_BalanceArticlePartial" model="@article" />
+                    </div>
+                }
+                <div>
+                    <h5 id="filter-text" class="text-center text-white text-md-end">Total sum: @Model.TotalSum BGN</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

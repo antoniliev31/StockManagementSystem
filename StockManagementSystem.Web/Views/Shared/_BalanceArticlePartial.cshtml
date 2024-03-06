@@ -1,0 +1,15 @@
+﻿@model ReportViewModel
+
+
+<div id="card-container" class="card col-8" style="width: 100rem;">
+    <table style="width: 100%; table-layout: fixed;" class="card-body">
+        <tr class="m">
+            <td style="width: 25%;"><h5 id="card-element" class="card-title mt-1">@Model.Title</h5></td>
+            <td style="width: 25%;"><p id="card-element" class="mb-0"><span class="fw-bold"></span>@Model.Category</p></td>
+            <td style="width: 25%;"><p id="card-element" class="mb-0"><span class="fw-bold"></span>@Model.Supplier</p></td>
+            <td style="width: 25%;"><p id="card-element" class="mb-0"><span class="fw-bold"></span>@Model.Price</p></td>
+            <td style="width: 15%;"><p id="card-element" class="mb-0"><span class="fw-bold"></span>@Model.Quantity</p></td>
+            <td style="width: 15%;"><p id="card-element" class="mb-0"><span class="fw-bold"></span>@Model.Sum</p></td>
+        </tr>
+    </table>
+</div>

@@ -6,7 +6,7 @@
     using StockManagementSystem.Services.Data.Models.Article;
     using StockManagementSystem.Web.Data;
     using StockManagementSystem.Web.ViewModels.Article;
-    using StockManagementSystem.Web.ViewModels.Article.Enums;
+    using StockManagementSystem.Web.ViewModels.Article.Enums;   
     using System;
     using System.Linq;
 

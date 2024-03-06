@@ -31,6 +31,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IArticleService, ArticleService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 
 var app = builder.Build();
